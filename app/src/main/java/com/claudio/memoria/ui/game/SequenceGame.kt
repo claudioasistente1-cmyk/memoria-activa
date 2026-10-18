@@ -42,8 +42,8 @@ fun SequenceGame(
     onRepeat: () -> Unit,
     onExit: () -> Unit
 ) {
-    LaunchedEffect(state.tapIndex) {
-        if (state.tapIndex > 0) sound.tap()
+    LaunchedEffect(state.highlighted) {
+        state.highlighted?.let { sound.color(it) }
     }
     LaunchedEffect(state.phase) {
         if (state.phase == GamePhase.FINISHED) {
@@ -111,7 +111,10 @@ fun SequenceGame(
                                 color = palette[colorIndex % palette.size],
                                 highlighted = state.highlighted == colorIndex,
                                 enabled = state.phase == GamePhase.INPUT,
-                                onClick = { onColorTap(colorIndex) },
+                                onClick = {
+                                    sound.color(colorIndex)
+                                    onColorTap(colorIndex)
+                                },
                                 modifier = Modifier.weight(1f)
                             )
                         }

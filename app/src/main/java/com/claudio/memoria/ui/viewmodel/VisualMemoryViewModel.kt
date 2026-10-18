@@ -47,7 +47,7 @@ class VisualMemoryViewModel(
         phaseJob?.cancel()
         startedAt = System.currentTimeMillis()
         val round = VisualMemoryEngine.generate(level, symbols, random)
-        val memorizeMillis = (2200L + round.items.size * 450L).coerceAtMost(7000L)
+        val memorizeMillis = (2800L + round.items.size * 500L).coerceAtMost(8000L)
         _state.value = VisualMemoryUiState(
             round = round,
             phase = GamePhase.MEMORIZE,

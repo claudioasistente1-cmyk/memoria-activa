@@ -190,7 +190,7 @@ fun PlayScreen(
 }
 
 private fun buildMathQuestions(content: GameContent, level: Int): List<MathQuestion> {
-    val levelContent = content.math.filter { it.level <= level }.maxByOrNull { it.level }
+    val levelContent = content.math.firstOrNull { it.level == level }
         ?: return emptyList()
     return levelContent.questions.mapNotNull { item ->
         if (item.text.isBlank()) return@mapNotNull null
@@ -203,7 +203,7 @@ private fun buildMathQuestions(content: GameContent, level: Int): List<MathQuest
 }
 
 private fun buildSeriesQuestions(content: GameContent, level: Int): List<SeriesQuestion> {
-    val levelContent = content.series.filter { it.level <= level }.maxByOrNull { it.level }
+    val levelContent = content.series.firstOrNull { it.level == level }
         ?: return emptyList()
     return levelContent.items.mapNotNull { item ->
         if (item.sequence.isEmpty()) return@mapNotNull null

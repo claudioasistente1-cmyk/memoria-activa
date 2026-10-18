@@ -2,6 +2,7 @@
 
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -83,14 +84,14 @@ fun VisualMemoryGame(
                     progress = { remaining },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(12.dp),
+                        .height(14.dp),
                 )
-                Spacer(Modifier.height(12.dp))
+                Spacer(Modifier.height(14.dp))
             }
 
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .weight(1f),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -173,16 +174,24 @@ private fun MemoryCell(
         reveal && wasTarget -> Success.copy(alpha = 0.22f)
         reveal && selected && !wasTarget -> Danger.copy(alpha = 0.22f)
         !reveal && selected -> MaterialTheme.colorScheme.primaryContainer
-        memorize && wasTarget -> MaterialTheme.colorScheme.surface
+        memorize && wasTarget -> MaterialTheme.colorScheme.secondaryContainer
         else -> MaterialTheme.colorScheme.surfaceVariant
     }
     val showSymbol = (memorize && wasTarget) || (reveal && wasTarget)
+    val shape = RoundedCornerShape(16.dp)
+    val border = if (memorize && wasTarget) {
+        Modifier.border(3.dp, MaterialTheme.colorScheme.primary, shape)
+    } else {
+        Modifier
+    }
 
     Surface(
-        shape = RoundedCornerShape(16.dp),
+        shape = shape,
         color = backgroundColor,
         tonalElevation = 1.dp,
-        modifier = modifier.clickable(onClick = onClick)
+        modifier = modifier
+            .then(border)
+            .clickable(onClick = onClick)
     ) {
         Box(contentAlignment = Alignment.Center) {
             if (showSymbol && symbol != null) {

@@ -26,6 +26,9 @@ class SoundEffects(private val enabled: () -> Boolean) {
 
     fun tap() = play(ToneGenerator.TONE_PROP_BEEP, 60)
 
+    /** Distinct note per colour, used by the "recordar secuencias" game. */
+    fun color(index: Int) = play(COLOR_TONES[index.mod(COLOR_TONES.size)], 260)
+
     fun release() {
         runCatching { toneGenerator?.release() }
         toneGenerator = null
@@ -33,5 +36,14 @@ class SoundEffects(private val enabled: () -> Boolean) {
 
     private companion object {
         const val VOLUME = 70
+
+        val COLOR_TONES = intArrayOf(
+            ToneGenerator.TONE_DTMF_1,
+            ToneGenerator.TONE_DTMF_2,
+            ToneGenerator.TONE_DTMF_3,
+            ToneGenerator.TONE_DTMF_4,
+            ToneGenerator.TONE_DTMF_5,
+            ToneGenerator.TONE_DTMF_6
+        )
     }
 }
