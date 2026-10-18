@@ -1,10 +1,10 @@
 {
-  "versionCode": 10001,
-  "versionName": "1.0.1",
-  "apkUrl": "https://github.com/claudioasistente1-cmyk/memoria-activa/releases/download/v1.0.1/memoria-activa-1.0.1.apk",
-  "sha256": "95467e2c6b0e536c7984772a2c6c0a38a0ef730470ef1da1e012f2a1b88327b8",
+  "versionCode": 10002,
+  "versionName": "1.0.2",
+  "apkUrl": "https://github.com/claudioasistente1-cmyk/memoria-activa/releases/download/v1.0.2/memoria-activa-1.0.2.apk",
+  "sha256": "36b83237f61039337e89e8bd8ef15e90661d441ff083d9ccc6cc16bbf5ced04d",
   "releaseNotes": "Mejoras y correcciones generales.",
   "apkSizeBytes": 2692636,
   "minSdk": 28,
-  "publishedAt": "2026-10-18T20:31:48Z"
+  "publishedAt": "2026-10-18T20:48:18Z"
 }
