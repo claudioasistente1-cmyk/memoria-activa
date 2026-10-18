@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Memoria Activa</string>
+
+    <string name="channel_reminders">Recordatorios diarios</string>
+    <string name="channel_reminders_desc">Avisos para hacer los ejercicios del dia</string>
+    <string name="channel_updates">Actualizaciones</string>
+    <string name="channel_updates_desc">Avisos de nuevas versiones de la aplicacion</string>
+
+    <string name="notif_reminder_title">Memoria Activa</string>
+    <string name="notif_update_title">Hay una nueva actualizacion disponible</string>
+    <string name="notif_update_text">Version %1$s lista para instalar</string>
+    <string name="notif_downloading_title">Descargando actualizacion</string>
+    <string name="notif_downloading_text">Version %1$s en camino</string>
+</resources>

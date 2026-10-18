@@ -1,0 +1,15 @@
+local.properties
+release.jks
+keystore.properties
+*.jks
+*.keystore
+*.base64
+secrets/
+.gradle/
+build/
+captures/
+.idea/
+*.iml
+.DS_Store
+/app/build/
+/app/release/
