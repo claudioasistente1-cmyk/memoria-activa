@@ -37,6 +37,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.claudio.memoria.di.AppContainer
+import com.claudio.memoria.ui.game.PlayScreen
 import com.claudio.memoria.ui.screens.DailyScreen
 import com.claudio.memoria.ui.screens.GamesScreen
 import com.claudio.memoria.ui.screens.HomeScreen
