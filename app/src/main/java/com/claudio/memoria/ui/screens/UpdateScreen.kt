@@ -68,7 +68,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
         }
 
         Text(
-            "Version instalada: ${BuildConfig.VERSION_NAME}",
+            "Versión instalada: ${BuildConfig.VERSION_NAME}",
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -95,7 +95,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                         )
                         Spacer(Modifier.size(14.dp))
                         Text(
-                            "Ya tenes la ultima version.",
+                            "Ya tenés la última versión.",
                             style = MaterialTheme.typography.titleMedium
                         )
                     }
@@ -118,7 +118,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                         )
                         Spacer(Modifier.size(14.dp))
                         Text(
-                            "No se pudo comprobar. Revisa tu conexion a internet.",
+                            "No se pudo comprobar. Revisá tu conexión a internet.",
                             style = MaterialTheme.typography.bodyLarge
                         )
                     }
@@ -149,11 +149,11 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                         Spacer(Modifier.size(14.dp))
                         Column {
                             Text(
-                                "Nueva version disponible",
+                                "Nueva versión disponible",
                                 style = MaterialTheme.typography.titleLarge
                             )
                             Text(
-                                "Version ${manifest.versionName}",
+                                "Versión ${manifest.versionName}",
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -161,7 +161,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                     }
                     if (manifest.releaseNotes.isNotBlank()) {
                         Spacer(Modifier.height(16.dp))
-                        Text("Que cambia", style = MaterialTheme.typography.titleMedium)
+                        Text("Qué cambia", style = MaterialTheme.typography.titleMedium)
                         Spacer(Modifier.height(6.dp))
                         Text(
                             manifest.releaseNotes,
@@ -180,7 +180,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                             icon = Icons.Filled.CloudDownload
                         )
                         BigButton(
-                            text = "Mas tarde",
+                            text = "Más tarde",
                             onClick = onBack,
                             modifier = Modifier.fillMaxWidth(),
                             outlined = true
@@ -202,7 +202,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                             )
                             Spacer(Modifier.height(10.dp))
                             Text(
-                                "No cierres la aplicacion.",
+                                "No cierres la aplicación.",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -212,23 +212,23 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                     DownloadUiState.PermissionRequired -> {
                         SectionCard {
                             Text(
-                                "Para instalar la actualizacion, Android necesita tu permiso.",
+                                "Para instalar la actualización, Android necesita tu permiso.",
                                 style = MaterialTheme.typography.bodyLarge
                             )
                             Spacer(Modifier.height(10.dp))
                             Text(
-                                "Toca el boton, activa \"Permitir desde esta fuente\" y volve a intentar.",
+                                "Tocá el botón, activá \"Permitir desde esta fuente\" y volvé a intentar.",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                         BigButton(
-                            text = "Permitir instalacion",
+                            text = "Permitir instalación",
                             onClick = viewModel::openInstallPermission,
                             modifier = Modifier.fillMaxWidth()
                         )
                         BigButton(
-                            text = "Ya lo permiti, descargar",
+                            text = "Ya lo permití, descargar",
                             onClick = { viewModel.download(manifest) },
                             modifier = Modifier.fillMaxWidth(),
                             outlined = true
@@ -236,7 +236,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                     }
 
                     DownloadUiState.HashMismatch -> {
-                        ErrorCard("El archivo descargado no es valido. Por seguridad no se instalo.")
+                        ErrorCard("El archivo descargado no es válido. Por seguridad no se instaló.")
                         BigButton(
                             text = "Reintentar",
                             onClick = {
@@ -246,7 +246,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                             modifier = Modifier.fillMaxWidth()
                         )
                         BigButton(
-                            text = "Mas tarde",
+                            text = "Más tarde",
                             onClick = onBack,
                             modifier = Modifier.fillMaxWidth(),
                             outlined = true
@@ -264,7 +264,7 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                             modifier = Modifier.fillMaxWidth()
                         )
                         BigButton(
-                            text = "Mas tarde",
+                            text = "Más tarde",
                             onClick = onBack,
                             modifier = Modifier.fillMaxWidth(),
                             outlined = true
@@ -274,8 +274,8 @@ fun UpdateScreen(viewModel: UpdateViewModel, onBack: () -> Unit) {
                     DownloadUiState.Ready -> {
                         SectionCard {
                             Text(
-                                "El instalador de Android se abrio. Segui las instrucciones en pantalla " +
-                                    "para terminar la actualizacion. Tu progreso no se borra.",
+                                "El instalador de Android se abrió. Seguí las instrucciones en pantalla " +
+                                    "para terminar la actualización. Tu progreso no se borra.",
                                 style = MaterialTheme.typography.bodyLarge
                             )
                         }

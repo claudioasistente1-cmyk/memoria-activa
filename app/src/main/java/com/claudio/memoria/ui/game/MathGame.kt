@@ -11,24 +11,32 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.claudio.memoria.ui.components.SectionCard
+import com.claudio.memoria.ui.sound.SoundEffects
 import com.claudio.memoria.ui.viewmodel.MathUiState
 
 @Composable
 fun MathGame(
     level: Int,
     state: MathUiState,
+    sound: SoundEffects,
     onAnswer: (Int) -> Unit,
     onRepeat: () -> Unit,
     onExit: () -> Unit
 ) {
+    LaunchedEffect(state.reveal, state.index) {
+        if (state.reveal && state.selected != null) {
+            if (state.selected == state.question?.answer) sound.success() else sound.error()
+        }
+    }
     Box(Modifier.fillMaxSize()) {
         PlayScaffold(
-            title = "Calculo mental",
+            title = "Cálculo mental",
             level = level,
             onBack = onExit,
             subtitle = "Elegi la respuesta correcta"

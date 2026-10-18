@@ -6,11 +6,11 @@ enum class GameType(
     val emoji: String,
     val description: String
 ) {
-    PAIRS("pairs", "Encontrar parejas", "\uD83C\uDFB4", "Encontra las cartas iguales"),
-    SEQUENCE("sequence", "Recordar secuencias", "\uD83D\uDD35", "Repeti el orden de los colores"),
-    VISUAL_MEMORY("visual_memory", "Memoria visual", "\uD83D\uDC41", "Recorda donde estaban las figuras"),
-    MATH("math", "Calculo mental", "\uD83D\uDD22", "Resolve cuentas sencillas"),
-    LOGIC("logic", "Patrones y logica", "\uD83E\uDDE9", "Descubri que sigue en la serie");
+    PAIRS("pairs", "Encontrar parejas", "\uD83C\uDFB4", "Encontrá las cartas iguales"),
+    SEQUENCE("sequence", "Recordar secuencias", "\uD83D\uDD35", "Repetí el orden de los colores"),
+    VISUAL_MEMORY("visual_memory", "Memoria visual", "\uD83D\uDC41", "Recordá dónde estaban las figuras"),
+    MATH("math", "Cálculo mental", "\uD83D\uDD22", "Resolvé cuentas sencillas"),
+    LOGIC("logic", "Patrones y lógica", "\uD83E\uDDE9", "Descubrí qué sigue en la serie");
 
     companion object {
         fun fromId(id: String): GameType? = values().firstOrNull { it.id == id }

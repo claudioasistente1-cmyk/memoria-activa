@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -27,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import com.claudio.memoria.ui.sound.SoundEffects
 import com.claudio.memoria.ui.viewmodel.GamePhase
 import com.claudio.memoria.ui.viewmodel.SequenceUiState
 
@@ -35,10 +37,19 @@ fun SequenceGame(
     level: Int,
     state: SequenceUiState,
     colors: List<String>,
+    sound: SoundEffects,
     onColorTap: (Int) -> Unit,
     onRepeat: () -> Unit,
     onExit: () -> Unit
 ) {
+    LaunchedEffect(state.tapIndex) {
+        if (state.tapIndex > 0) sound.tap()
+    }
+    LaunchedEffect(state.phase) {
+        if (state.phase == GamePhase.FINISHED) {
+            if (state.correctCount == state.length) sound.success() else sound.error()
+        }
+    }
     val palette = remember(colors) {
         colors.map { hex ->
             runCatching { Color(android.graphics.Color.parseColor(hex)) }
@@ -52,8 +63,8 @@ fun SequenceGame(
             level = level,
             onBack = onExit,
             subtitle = when (state.phase) {
-                GamePhase.SHOWING -> "Mira con atencion la secuencia"
-                GamePhase.INPUT -> "Repeti la secuencia tocando los colores"
+                GamePhase.SHOWING -> "Mirá con atención la secuencia"
+                GamePhase.INPUT -> "Repetí la secuencia tocando los colores"
                 else -> "Secuencia terminada"
             }
         ) {

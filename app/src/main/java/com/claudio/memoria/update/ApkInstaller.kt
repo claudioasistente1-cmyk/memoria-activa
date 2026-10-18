@@ -40,6 +40,7 @@ class ApkInstaller(private val context: Context) {
             setDataAndType(uri, "application/vnd.android.package-archive")
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            clipData = android.content.ClipData.newRawUri("apk", uri)
         }
         context.startActivity(intent)
     }

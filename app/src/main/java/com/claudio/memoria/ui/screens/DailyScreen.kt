@@ -51,7 +51,7 @@ fun DailyScreen(
             .padding(horizontal = 24.dp, vertical = 28.dp),
         verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
-        ScreenTitle("Desafio de hoy")
+        ScreenTitle("Desafío de hoy")
         Text(
             "Tres actividades cortas para hacer sin apuro.",
             style = MaterialTheme.typography.bodyLarge,
@@ -85,11 +85,11 @@ fun DailyScreen(
         }
 
         SectionCard {
-            Text("Sin presion", style = MaterialTheme.typography.titleMedium)
+            Text("Sin presión", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(6.dp))
             Text(
-                "Si un dia no podes jugar, no pasa nada. Tu progreso queda guardado y " +
-                    "manana tendras nuevos desafios.",
+                "Si un día no podés jugar, no pasa nada. Tu progreso queda guardado y " +
+                    "mañana tendrás nuevos desafíos.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

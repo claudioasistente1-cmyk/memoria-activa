@@ -45,7 +45,7 @@ fun GamesScreen(
     ) {
         ScreenTitle("Juegos")
         Text(
-            "Elegi un juego para entrenar. Podes repetirlo las veces que quieras.",
+            "Elegí un juego para entrenar. Podés repetirlo las veces que quieras.",
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

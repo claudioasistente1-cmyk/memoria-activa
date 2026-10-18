@@ -66,7 +66,7 @@ fun ProgressScreen(viewModel: ProgressViewModel) {
             )
             SummaryCard(
                 value = activeDays.toString(),
-                label = "Dias activos",
+                label = "Días activos",
                 modifier = Modifier.weight(1f)
             )
         }
@@ -76,7 +76,7 @@ fun ProgressScreen(viewModel: ProgressViewModel) {
             Spacer(Modifier.height(12.dp))
             if (stats.isEmpty()) {
                 Text(
-                    "Todavia no jugaste. Cuando termines un juego vas a ver tus resultados aca.",
+                    "Todavía no jugaste. Cuando termines un juego vas a ver tus resultados acá.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -106,11 +106,11 @@ fun ProgressScreen(viewModel: ProgressViewModel) {
         }
 
         SectionCard {
-            Text("Ultimos dias", style = MaterialTheme.typography.titleLarge)
+            Text("Últimos días", style = MaterialTheme.typography.titleLarge)
             Spacer(Modifier.height(12.dp))
             if (history.isEmpty()) {
                 Text(
-                    "Cuando completes actividades vas a ver tu historial aca.",
+                    "Cuando completes actividades vas a ver tu historial acá.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

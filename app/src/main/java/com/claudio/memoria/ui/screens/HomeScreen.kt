@@ -40,7 +40,7 @@ fun HomeScreen(
 ) {
     val routine by viewModel.routine.collectAsStateWithLifecycle()
     val greeting = when (LocalTime.now().hour) {
-        in 5..12 -> "Buen dia"
+        in 5..12 -> "Buen día"
         in 13..19 -> "Buenas tardes"
         else -> "Buenas noches"
     }
@@ -74,7 +74,7 @@ fun HomeScreen(
         }
 
         SectionCard {
-            Text("Desafio de hoy", style = MaterialTheme.typography.titleLarge)
+            Text("Desafío de hoy", style = MaterialTheme.typography.titleLarge)
             Spacer(Modifier.height(8.dp))
             Text(
                 "$completed de $total actividades",

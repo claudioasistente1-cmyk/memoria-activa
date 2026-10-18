@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.claudio.memoria.ui.components.BigButton
+import com.claudio.memoria.ui.sound.SoundEffects
 import com.claudio.memoria.ui.theme.Danger
 import com.claudio.memoria.ui.theme.Success
 import com.claudio.memoria.ui.viewmodel.GamePhase
@@ -41,11 +42,17 @@ import com.claudio.memoria.ui.viewmodel.VisualMemoryUiState
 fun VisualMemoryGame(
     level: Int,
     state: VisualMemoryUiState,
+    sound: SoundEffects,
     onToggleCell: (Int) -> Unit,
     onSubmit: () -> Unit,
     onRepeat: () -> Unit,
     onExit: () -> Unit
 ) {
+    LaunchedEffect(state.phase) {
+        if (state.phase == GamePhase.FINISHED) {
+            if (state.correctCount * 2 >= state.targetCount) sound.success() else sound.error()
+        }
+    }
     val round = state.round
     val gridSize = round.gridSize
     val cellCount = gridSize * gridSize
@@ -56,8 +63,8 @@ fun VisualMemoryGame(
             level = level,
             onBack = onExit,
             subtitle = when (state.phase) {
-                GamePhase.MEMORIZE -> "Memoriza donde estan las figuras"
-                GamePhase.RECALL -> "Toca las casillas donde estaban"
+                GamePhase.MEMORIZE -> "Memorizá dónde están las figuras"
+                GamePhase.RECALL -> "Tocá las casillas donde estaban"
                 else -> "Resultado"
             }
         ) {

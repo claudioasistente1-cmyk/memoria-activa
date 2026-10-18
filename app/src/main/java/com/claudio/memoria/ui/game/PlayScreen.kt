@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -27,6 +29,7 @@ import com.claudio.memoria.domain.engine.SeriesEngine
 import com.claudio.memoria.domain.engine.SeriesQuestion
 import com.claudio.memoria.domain.model.GameType
 import com.claudio.memoria.ui.components.BigButton
+import com.claudio.memoria.ui.sound.SoundEffects
 import com.claudio.memoria.ui.viewmodel.GameOutcome
 import com.claudio.memoria.ui.viewmodel.LogicViewModel
 import com.claudio.memoria.ui.viewmodel.MathViewModel
@@ -40,12 +43,19 @@ fun PlayScreen(
     container: AppContainer,
     gameId: String,
     level: Int,
+    soundEnabled: Boolean,
     onExit: () -> Unit
 ) {
     val gameType = GameType.fromId(gameId)
     val content by container.contentRepository.content.collectAsStateWithLifecycle()
     val scope = rememberCoroutineScope()
     val safeLevel = level.coerceIn(1, 8)
+
+    val soundEnabledState = rememberUpdatedState(soundEnabled)
+    val sound = remember { SoundEffects { soundEnabledState.value } }
+    DisposableEffect(sound) {
+        onDispose { sound.release() }
+    }
 
     val record: (GameOutcome) -> Unit = { outcome ->
         val type = gameType
@@ -89,6 +99,7 @@ fun PlayScreen(
             PairsGame(
                 level = safeLevel,
                 state = state,
+                sound = sound,
                 onFlip = vm::flip,
                 onRepeat = vm::restart,
                 onExit = onExit
@@ -109,6 +120,7 @@ fun PlayScreen(
                 level = safeLevel,
                 state = state,
                 colors = content.sequence.colors,
+                sound = sound,
                 onColorTap = vm::onColorTap,
                 onRepeat = vm::restart,
                 onExit = onExit
@@ -127,6 +139,7 @@ fun PlayScreen(
             VisualMemoryGame(
                 level = safeLevel,
                 state = state,
+                sound = sound,
                 onToggleCell = vm::toggleCell,
                 onSubmit = vm::submit,
                 onRepeat = vm::restart,
@@ -147,6 +160,7 @@ fun PlayScreen(
             MathGame(
                 level = safeLevel,
                 state = state,
+                sound = sound,
                 onAnswer = vm::answer,
                 onRepeat = vm::restart,
                 onExit = onExit
@@ -166,6 +180,7 @@ fun PlayScreen(
             LogicGame(
                 level = safeLevel,
                 state = state,
+                sound = sound,
                 onAnswer = vm::answer,
                 onRepeat = vm::restart,
                 onExit = onExit

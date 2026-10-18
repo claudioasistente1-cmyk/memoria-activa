@@ -106,7 +106,7 @@ fun SettingsScreen(
                 Column(Modifier.weight(1f)) {
                     Text("Horario del aviso", style = MaterialTheme.typography.titleMedium)
                     Text(
-                        "Toca para cambiar la hora",
+                        "Tocá para cambiar la hora",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -176,7 +176,7 @@ fun SettingsScreen(
             Text("Privacidad", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(6.dp))
             Text(
-                "Todo lo que jugas se guarda solo en tu telefono. No se pide cuenta, " +
+                "Todo lo que jugás se guarda solo en tu teléfono. No se pide cuenta, " +
                     "no hay publicidad y no se comparten tus datos.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant

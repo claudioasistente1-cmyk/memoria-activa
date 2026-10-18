@@ -36,6 +36,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.claudio.memoria.data.prefs.AppSettings
 import com.claudio.memoria.di.AppContainer
 import com.claudio.memoria.ui.game.PlayScreen
 import com.claudio.memoria.ui.screens.DailyScreen
@@ -71,6 +73,8 @@ fun MemoriaRoot(container: AppContainer, destination: StateFlow<IntentDestinatio
     val currentRoute = backStackEntry?.destination?.route
     val factory = remember(container) { appViewModelFactory(container) }
     val context = LocalContext.current
+    val settings by container.settingsRepository.settings
+        .collectAsStateWithLifecycle(initialValue = AppSettings())
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -191,6 +195,7 @@ fun MemoriaRoot(container: AppContainer, destination: StateFlow<IntentDestinatio
                     container = container,
                     gameId = gameId,
                     level = level,
+                    soundEnabled = settings.soundEnabled,
                     onExit = { navController.popBackStack() }
                 )
             }

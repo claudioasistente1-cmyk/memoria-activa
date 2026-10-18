@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.claudio.memoria.domain.engine.PairsCard
+import com.claudio.memoria.ui.sound.SoundEffects
 import com.claudio.memoria.ui.theme.CardBack
 import com.claudio.memoria.ui.viewmodel.PairsUiState
 
@@ -37,16 +39,20 @@ import com.claudio.memoria.ui.viewmodel.PairsUiState
 fun PairsGame(
     level: Int,
     state: PairsUiState,
+    sound: SoundEffects,
     onFlip: (Int) -> Unit,
     onRepeat: () -> Unit,
     onExit: () -> Unit
 ) {
+    LaunchedEffect(state.matchedPairs.size) {
+        if (state.matchedPairs.isNotEmpty()) sound.success()
+    }
     Box(Modifier.fillMaxSize()) {
         PlayScaffold(
             title = "Encontrar parejas",
             level = level,
             onBack = onExit,
-            subtitle = "Toca dos cartas iguales"
+            subtitle = "Tocá dos cartas iguales"
         ) {
             Row(Modifier.fillMaxWidth()) {
                 Text(

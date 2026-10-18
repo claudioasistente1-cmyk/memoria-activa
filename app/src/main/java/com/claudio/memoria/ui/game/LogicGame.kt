@@ -16,26 +16,34 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.claudio.memoria.ui.components.SectionCard
+import com.claudio.memoria.ui.sound.SoundEffects
 import com.claudio.memoria.ui.viewmodel.LogicUiState
 
 @Composable
 fun LogicGame(
     level: Int,
     state: LogicUiState,
+    sound: SoundEffects,
     onAnswer: (Int) -> Unit,
     onRepeat: () -> Unit,
     onExit: () -> Unit
 ) {
+    LaunchedEffect(state.reveal, state.index) {
+        if (state.reveal && state.selected != null) {
+            if (state.selected == state.series?.answer) sound.success() else sound.error()
+        }
+    }
     Box(Modifier.fillMaxSize()) {
         PlayScaffold(
-            title = "Patrones y logica",
+            title = "Patrones y lógica",
             level = level,
             onBack = onExit,
-            subtitle = "Descubri que numero falta"
+            subtitle = "Descubrí qué número falta"
         ) {
             val series = state.series
             if (series == null) {

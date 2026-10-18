@@ -32,9 +32,9 @@ class DailyReminderWorker(
 
         val hour = LocalTime.now().hour
         val message = when {
-            hour < 13 -> "\u00A1Buen dia! Tus ejercicios de memoria estan listos."
-            hour < 19 -> "\u00BFJugamos 10 minutos? Hoy tenes nuevos desafios."
-            else -> "Todavia podes completar tus juegos de hoy."
+            hour < 13 -> "\u00A1Buen día! Tus ejercicios de memoria están listos."
+            hour < 19 -> "\u00BFJugamos 10 minutos? Hoy tenés nuevos desafíos."
+            else -> "Todavía podés completar tus juegos de hoy."
         }
         NotificationHelper.showDailyReminder(applicationContext, message)
         return Result.success()
